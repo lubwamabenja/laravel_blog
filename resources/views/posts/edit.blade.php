@@ -1,31 +1,14 @@
 @extends('admin')
 
 
+@section('title','| Edit Post')
 
-@section('tinymce')
-    <script src="{{URL::asset('tinymce/tinymce.min.js')}}"></script>
-    <script src="{{URL::asset('tinymce/tinymce.js')}}"></script>
-    <script src="{{URL::asset('tinymce/jquery.tinymce.min.js')}}"></script>
+@section('stylesheets')
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" href="{{ URL::asset('admin/css/select2/select2.min.css') }}">
+@endsection
 
-    <script>
-        tinymce.init({
-            selector:"#postContent",
-            plugins: "advlist lists checklist fullscreen insertdatetime anchor autoresize\
-             autosave bbcode casechange table advtable searchreplace spellchecker toc media template\
-             align image paste textcolor",
-            toolbar: "numlist checklist fullscreen anchor insertdatetime restoredraft casechange table\
-            searchreplace spellchecker toc media template align image imagetools paste forecolor backcolor",
-            menubar: "file insert format view edit tools ",
-            formats:{
-                bold:{inline : 'b'},
-                italic:{ inline : 'i'},
-                underline: { inline : 'u'}
-            }
-
-        });
-    </script>
-
-  @endsection
 
 
 
@@ -48,6 +31,9 @@
                                             </li>
                                             <li class="active"><a data-toggle="tab" href=" #"><span class="inbox-icon"><i class="fa fa fa-inbox "></i></span> Edit Post</a>
                                             </li>
+                                            <li>{!! Html::linkRoute('tags.index','Tags',['data-toggle' => "tab", 'class' => 'fa fa fa-inbox inbox-icon']) !!}
+                                            </li>
+
 
 
                                         </ul>
@@ -83,10 +69,25 @@
                                                     <div  class="col-lg-12">
                                                         {!! Form::text('slug', null, ['class' => 'form-control']) !!}
                                                     </div>
+                                                    <div class="col-lg-2">
+                                                        {!! Form::label('category_id', 'Category:') !!}
+                                                    </div><br>
+                                                    <div class="col-lg-12">
+                                                        {{ Form::select('category_id', $categories,null,['class'=>'form-control']) }}
+                                                    </div>
+
+                                                    <div class="col-lg-2">
+                                                        {!! Form::label('tags', 'Tags:') !!}
+                                                    </div><br>
+                                                    <div class="col-lg-12">
+                                                        {{ Form::select('tags[]', $tags, null, ['class'=>'form-control select-multi',
+                                                        'multiple' => 'multiple']) }}
+                                                    </div>
                                                      <div  class="col-lg-2"><br>
                                                             {!! Form::label('body', 'Post Body:',['style' => 'margin-top:0px']) !!}
 
                                                     </div>
+
                                                     <div class="col-lg-12">
 
                                                             {!! Form::textarea('body', null, ['class' => 'form-control ckeditor']) !!}
@@ -130,17 +131,13 @@
                 </div>
             </div>
 
-
-
-
-
-
-
-
-
-
-
   @endsection
 
+  @section('scripts')
+  <script src="{{ URL::asset('admin/css/select2/select2.min.js')}}"></script>
+  <script>
+      $('.select-multi').select2();
+  </script>
+@endsection
 
 

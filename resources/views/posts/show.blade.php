@@ -1,5 +1,6 @@
 @extends('admin')
 
+@section('title','|View post')
 @section('content')
 
 
@@ -22,8 +23,14 @@
                                 </li>
                                 <li class="active"><a data-toggle="tab" href="#viewmail"><span class="inbox-icon"><i class="fa fa fa-inbox "></i></span> View Post</a>
                                 </li>
-
+                                <li>
+                                    {!! Html::linkRoute('categories.index','All categories',['data-toggle' => "tab", 'class' => 'fa fa fa-inbox inbox-icon']) !!}
                                 </li>
+                                <li>
+                                    {!! Html::linkRoute('tags.index','Tags',['data-toggle' => "tab", 'class' => 'fa fa fa-inbox inbox-icon']) !!}
+                                </li>
+
+
 
                             </ul>
                         </div>
@@ -50,18 +57,71 @@
                                     <div class="view-mail-content">
                                         {!! $post->body !!}
                                     </div>
+                                    <div class="tags">
+                                        @foreach ($post->tags as $tag)
+                                             <span class="label label-default">{{ $tag->name}}</span>
+                                        @endforeach
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="all-attachment-area">
                                                 <ul class="attachment-menu-view">
-                                                <li>Url: <a href="{{ route('blogs.single',"$post->slug")}}">{{ $post->slug }} </a>
+                                                <li> <b>Url:</b> </span> <a href="{{ route('blogs.single',"$post->slug")}}">{{ $post->slug }} </a>
                                                     </li>
-                                                    <li style="color:green;">Created at: {{ date('j-M-Y h:ia',strtotime($post->created_at)) }} </a>
+                                                    <li><b>Category:</b> {{ $post->category->name }}
                                                     </li>
-                                                    <li style="color:green">Updated at: {{ date('j-M-Y h:ia',strtotime($post->updated_at)) }} </a>
+                                                    <li style="color:green;"><b>Created at:</b> {{ date('j-M-Y h:ia',strtotime($post->created_at)) }} </a>
+                                                    </li>
+                                                    <li style="color:green"><b>Updated at:</b> {{ date('j-M-Y h:ia',strtotime($post->updated_at)) }} </a>
                                                     </li>
 
                                                 </ul>
+                                            </div>
+                                        </div>
+                                        <div style="margin-top:10px" class="col-lg-10">
+                                            <div class="sparkline8-list shadow-reset">
+                                                <div class="sparkline8-hd">
+                                                    <div class="main-sparkline8-hd">
+                                                    <h1>{{ $post->comments()->count()}} Comments </h1>
+                                                        <div class="sparkline8-outline-icon">
+                                                            <span class="sparkline8-collapse-link"><i class="fa fa-chevron-up"></i></span>
+                                                            <span><i class="fa fa-wrench"></i></span>
+                                                            <span class="sparkline8-collapse-close"><i class="fa fa-times"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sparkline8-graph">
+                                                    <div class="static-table-list">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+
+                                                                    <th>Name</th>
+                                                                    <th>Email</th>
+                                                                    <th>Comment</th>
+                                                                    <th>Options</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($post->comments as $comment)
+
+
+                                                                <tr>
+                                                                    <td>{{$comment->name}}</td>
+                                                                    <td>{{$comment->email}}</td>
+                                                                    <td>{{$comment->comment}}</td>
+                                                                <td><a href="{{ route('comments.edit',$comment->id)}}"class="btn btn-xs btn-primary  "><span
+                                                                        class="glyphicon glyphicon-pencil"></span></a>
+                                                                        <a href="{{ route('comments.delete',$comment->id)}}" class="btn btn-xs btn-danger  "><span
+                                                                            class="glyphicon glyphicon-trash"></span></a>
+                                                                </td>
+                                                                </tr>
+
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -14,7 +14,9 @@ class BlogController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $posts = Post::paginate(8);
-        return view('blogs.index')->withPosts($posts)->withTags($tags)->withCategories($categories);
+        $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
+        return view('blogs.index')->withPosts($posts)->withTags($tags)->withCategories($categories)
+        ->withLatestPosts($latestPosts);
     }
     public function getSingle($slug){
         //$slug = Posts::find($slug);
@@ -24,8 +26,10 @@ class BlogController extends Controller
 
 
         $post = Post::where('slug','=',$slug)->first();
+        $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
 
-        return view('blogs.single')->withPost($post)->withTags($tags)->withCategories($categories);
+        return view('blogs.single')->withPost($post)->withTags($tags)->withCategories($categories)
+        ->withLatestPosts[$latestPosts];
 
     }
 
