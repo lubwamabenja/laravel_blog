@@ -47,7 +47,7 @@
                     <img src="{{ asset('images/'.$post->image) }}" alt="Image placeholder">
                     <div class="blog-content-body">
                       <div class="post-meta">
-                        <span class="author mr-2"><img src="images/person_1.jpg" alt="nathan"> nathan</span>&bullet;
+                        <span class="author mr-2"><img src="images/person_1.jpg" alt="nathan"> {{$post->user->name}}</span>&bullet;
                         <span class="mr-2">{{ date('M j,Y',strtotime($post->created_at))}}</span> &bullet;
                         <span class="ml-2"><span class="fa fa-comments"></span> {{$post->comments()->count()}}</span>
                       </div>
@@ -93,39 +93,21 @@
                 <h3 class="heading">Popular Posts</h3>
                 <div class="post-entry-sidebar">
                   <ul>
+                    @foreach ($popularPosts as $popularPost)
+
                     <li>
                       <a href="">
-                        <img src="images/img_2.jpg" alt="Image placeholder" class="mr-4">
+                        <img src="{{ asset('images/'.$popularPost->image) }}" alt="Image placeholder" class="mr-4">
                         <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
+                          <h4>{{$popularPost->title}}</h4>
                           <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
+                            <span class="mr-2">{{ date( 'M j Y h:ia',strtotime($popularPost->created_at))}}</span>
                           </div>
                         </div>
                       </a>
                     </li>
-                    <li>
-                      <a href="">
-                        <img src="images/img_4.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="">
-                        <img src="images/img_12.jpg" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>How to Find the Video Games of Your Youth</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">March 15, 2018 </span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
+                    @endforeach
+
                   </ul>
                 </div>
               </div>

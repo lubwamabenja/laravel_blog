@@ -22,8 +22,9 @@ class HomeController extends Controller
         $categories = Category::all();
         $posts = Post::orderBy('created_at','desc')->limit(8)->get();
         $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
+        $popularPosts = Post::orderBy('views','desc')->limit(3)->get();
         return view('home')->withPosts($posts)->withTags($tags)->withCategories($categories)
-        ->withlatestPosts($latestPosts);
+        ->withlatestPosts($latestPosts)->withPopularPosts($popularPosts);
 
     }
     public function getAbout()
@@ -32,7 +33,9 @@ class HomeController extends Controller
         $categories = Category::all();
         $posts = Post::orderBy('created_at','desc')->limit(8)->get();
         $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
-        return view('pages.about')->withPosts($posts)->withTags($tags)->withCategories($categories)->withlatestPosts($latestPosts);;
+        $popularPosts = Post::orderBy('views','desc')->limit(3)->get();
+        return view('pages.about')->withPosts($posts)->withTags($tags)->withCategories($categories)->withlatestPosts($latestPosts)
+        ->withPopularPosts($popularPosts);
 
     }
 }

@@ -17,9 +17,10 @@ class ContactController extends Controller
         $categories = Category::all();
         $posts = Post::orderBy('created_at','desc')->limit(3)->get();
         $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
+        $popularPosts = Post::orderBy('views','desc')->limit(3)->get();
 
         return view('pages.contact')->withTags($tags)->withCategories($categories)->withPosts($posts)
-        ->withLatestPosts($latestPosts);
+        ->withLatestPosts($latestPosts)->withPopularPosts($popularPosts);
     }
 
     public function postContact(Request $request){

@@ -223,39 +223,21 @@
               <h3 class="heading">Popular Posts</h3>
               <div class="post-entry-sidebar">
                 <ul>
-                  <li>
-                    <a href="">
-                      <img src="images/img_2.jpg" alt="Image placeholder" class="mr-4">
-                      <div class="text">
-                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                        <div class="post-meta">
-                          <span class="mr-2">March 15, 2018 </span>
+                    @foreach ($popularPosts as $popularPost)
+
+                    <li>
+                      <a href="">
+                        <img src="{{ asset('images/'.$popularPost->image) }}" alt="Image placeholder" class="mr-4">
+                        <div class="text">
+                          <h4>{{$popularPost->title}}</h4>
+                          <div class="post-meta">
+                            <span class="mr-2">{{ date( 'M j Y h:ia',strtotime($popularPost->created_at))}}</span>
+                          </div>
                         </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <img src="images/img_4.jpg" alt="Image placeholder" class="mr-4">
-                      <div class="text">
-                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                        <div class="post-meta">
-                          <span class="mr-2">March 15, 2018 </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="">
-                      <img src="images/img_12.jpg" alt="Image placeholder" class="mr-4">
-                      <div class="text">
-                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                        <div class="post-meta">
-                          <span class="mr-2">March 15, 2018 </span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
+                      </a>
+                    </li>
+                    @endforeach
+
                 </ul>
               </div>
             </div>
