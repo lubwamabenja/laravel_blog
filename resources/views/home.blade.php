@@ -6,22 +6,22 @@
 
         <!-- Home -->
 
-    <div class="home">
-        <div class="background_image" style="background-image:url({{ asset('images/'.$latest[0]->image) }})">
-        </div>
-          <div class="home_container">
-            <div class="container">
-              <div class="row">
-                <div class="col">
-                  <div class="home_content">
-                    <div class="home_title">{{$latest[0]->title}}</div>
-                  <div class="home_text">{{ substr($latest[0]->body,0,300)}}{{ strlen($latest[0]->body)> 300?"....":""}}</div>
-                    <div class="button home_button"><a href="{{ url('blog/'.$latest[0]->slug) }}"><span>read more</span><span>read more</span></a></div>
+        <div class="home">
+            <div class="background_image" style="background-image:url(images/bg1.jpg)">
+            </div>
+              <div class="home_container">
+                <div class="container">
+                  <div class="row">
+                    <div class="col">
+                      <div class="home_content">
+                        <div class="home_title">GODS OF INK</div>
+                        <div class="home_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</div>
+                        <div class="button home_button"><a href="#"><span>read more</span><span>read more</span></a></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-    </div>
+        </div>
         </div>
 
       <br>

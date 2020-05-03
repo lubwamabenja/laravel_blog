@@ -195,6 +195,7 @@ class PostController extends Controller
     {
         //
         $post = Post::find($id);
+        $post->tags()->detach();
         $post->delete();
         $request->session()->flash('success', 'Post was successfully Deleted');
         return redirect()->route('posts.index');

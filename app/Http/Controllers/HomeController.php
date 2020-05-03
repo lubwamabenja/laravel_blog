@@ -21,9 +21,8 @@ class HomeController extends Controller
         $tags = Tag::all();
         $categories = Category::all();
         $posts = Post::orderBy('created_at','desc')->limit(8)->get();
-        $latest=Post::orderBy('created_at','desc')->limit(1)->get();
         $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
-        return view('home')->withPosts($posts)->withTags($tags)->withCategories($categories)->withLatest($latest)
+        return view('home')->withPosts($posts)->withTags($tags)->withCategories($categories)
         ->withlatestPosts($latestPosts);
 
     }

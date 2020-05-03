@@ -7,6 +7,15 @@
     <!-- animate CSS
     ============================================ -->
     <link rel="stylesheet" href="{{ URL::asset('admin/css/select2/select2.min.css') }}">
+    <script src="{{ URL::asset('tinymce/tinymce.min.js')}}"></script>
+    <script src="{{ URL::asset('tinymce/tinymce.js')}}"></script>
+    <script src="{{ URL::asset('tinymce/jquery.tinymce.min.js')}}"></script>
+
+    <script>
+        tinymce.init({
+            selector:"#body"
+        });
+    </script>
 @endsection
 
 
@@ -90,7 +99,7 @@
 
                                                     <div class="col-lg-12">
 
-                                                            {!! Form::textarea('body', null, ['class' => 'form-control ckeditor']) !!}
+                                                            {!! Form::textarea('body', null, ['class' => 'form-control ckeditor','id' =>'body']) !!}
 
                                                     </div>
                                                 </div>

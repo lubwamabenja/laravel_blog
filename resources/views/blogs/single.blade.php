@@ -21,7 +21,7 @@
           <div class="row blog-entries element-animate">
 
             <div class="col-md-12 col-lg-8 main-content">
-              <img src="{{ asset('images/post_images/'.$post->image) }}" alt="Image" class="img-fluid mb-5">
+              <img src="{{ asset('images/'.$post->image) }}" alt="Image" class="img-fluid mb-5">
                <div class="post-meta">
                           <span class="author mr-2"><img src="{{ URL::asset('images/person_1.jpg')}}" alt="Colorlib" class="mr-2"> Colorlib</span>&bullet;
                           <span class="mr-2">{{ date('M j,Y',strtotime($post->created_at))}}</span> &bullet;

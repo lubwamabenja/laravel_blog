@@ -25,7 +25,7 @@
                 @foreach ($posts as $post)
                 <div class="post-entry-horzontal">
                   <a href="{{ url('blog/'.$post->slug) }}">
-                    <div class="image" style="background-image: url('{{ asset('images/post_images/'.$post->image) }}');"></div>
+                    <div class="image" style="background-image: url('{{ asset('images/'.$post->image) }}');"></div>
                     <span class="text">
                       <div class="post-meta">
                         <span class="author mr-2"><img src="images/person_1.jpg" alt="Colorlib"> Colorlib</span>&bullet;

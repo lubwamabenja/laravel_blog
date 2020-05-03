@@ -23,13 +23,10 @@ class BlogController extends Controller
 
         $tags = Tag::all();
         $categories = Category::all();
-
-
-        $post = Post::where('slug','=',$slug)->first();
         $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
-
-        return view('blogs.single')->withPost($post)->withTags($tags)->withCategories($categories)
-        ->withLatestPosts[$latestPosts];
+        $post = Post::where('slug','=',$slug)->first();
+        return view('blogs.single')->withPost($post)->withTags($tags)->withCategories($categories)->
+        withLatestPosts($latestPosts);
 
     }
 
