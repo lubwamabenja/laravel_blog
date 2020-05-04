@@ -5,24 +5,26 @@
 @section('content')
 
         <!-- Home -->
-
-        <div class="home">
-            <div class="background_image" style="background-image:url(images/bg1.jpg)">
-            </div>
-              <div class="home_container">
-                <div class="container">
-                  <div class="row">
-                    <div class="col">
-                      <div class="home_content">
-                        <div class="home_title">GODS OF INK</div>
-                        <div class="home_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien.</div>
-                        <div class="button home_button"><a href="#"><span>read more</span><span>read more</span></a></div>
-                      </div>
-                    </div>
-                  </div>
+@foreach ($mainPosts as $mainPost)
+<div class="home">
+    <div class="background_image" style="background-image:url({{ asset('images/'.$mainPost->image) }})">
+        </div>
+    <div class="home_container">
+            <div class="container">
+            <div class="row">
+                <div class="col">
+                <div class="home_content">
+                    <div class="home_title">{{$mainPost->title}}</div>
+                    <div class="button home_button"><a href="{{ url('blog/'.$mainPost->slug) }}"><span>read more</span><span>read more</span></a></div>
                 </div>
-        </div>
-        </div>
+                </div>
+            </div>
+            </div>
+    </div>
+</div>
+
+
+@endforeach
 
       <br>
       <br>
@@ -47,7 +49,7 @@
                     <img src="{{ asset('images/'.$post->image) }}" alt="Image placeholder">
                     <div class="blog-content-body">
                       <div class="post-meta">
-                        <span class="author mr-2"><img src="images/person_1.jpg" alt="nathan"> {{$post->user->name}}</span>&bullet;
+                        <span class="author mr-2"><img src="{{ asset('images/profile/'.$post->user->image) }}" alt="nathan"> {{$post->user->name}}</span>&bullet;
                         <span class="mr-2">{{ date('M j,Y',strtotime($post->created_at))}}</span> &bullet;
                         <span class="ml-2"><span class="fa fa-comments"></span> {{$post->comments()->count()}}</span>
                       </div>
@@ -72,12 +74,14 @@
                 </form>
               </div>
               <!-- END sidebar-box -->
+              @foreach ($users as $user)
+
               <div class="sidebar-box">
                 <div class="bio text-center">
-                  <img src="images/person_1.jpg" alt="Image Placeholder" class="img-fluid">
+                  <img src="{{ asset('images/profile/'.$user->image) }}" alt="Image Placeholder" class="img-fluid">
                   <div class="bio-body">
-                    <h2>David Craig</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
+                    <h2>{{$user->name}}</h2>
+                  <p>{{$user->bio}}</p>
                     <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
                     <p class="social">
                       <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
@@ -88,6 +92,9 @@
                   </div>
                 </div>
               </div>
+
+              @endforeach
+
               <!-- Start sidebar-box -->
               <div class="sidebar-box">
                 <h3 class="heading">Popular Posts</h3>

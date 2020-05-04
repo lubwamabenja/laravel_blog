@@ -18,7 +18,7 @@
                     @foreach ($latestPosts as $latestPost)
                     <li>
                         <a href="">
-                          <img src="images/img_6.jpg" alt="Image placeholder" class="mr-4">
+                          <img src="{{ asset('images/'.$latestPost->image) }}" alt="Image placeholder" class="mr-4">
                           <div class="text">
                             <h4>{{$latestPost->title}}</h4>
                             <div class="post-meta">
