@@ -16,6 +16,7 @@
             @include('adminPartials._adminBreadcome')
             @include('adminPartials._adminMobile')
             @include('adminPartials._adminBreadcome2')
+            @include('adminPartials._messages')
 
 
             @yield('content')

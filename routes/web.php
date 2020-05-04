@@ -34,6 +34,10 @@ Route::group(['middleware' => ['auth','verified']], function () {
      //tags Controller
      Route::resource('tags', 'TagController',['except'=> ['create']]);
 
+     //User Controller
+     Route::resource('users', 'UserController');
+
+
 });
 Route::group(['middleware' => ['web']], function () {
      //Blog routes

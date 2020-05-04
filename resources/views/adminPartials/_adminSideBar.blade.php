@@ -23,6 +23,8 @@
                         {!! Html::linkRoute('posts.index','Posts',['data-toggle' => "tab", 'class' => 'dropdown-item']) !!}
                         {!! Html::linkRoute('categories.index','Categories',['data-toggle' => "tab", 'class' => 'dropdown-item']) !!}
                         {!! Html::linkRoute('tags.index','Tags',['data-toggle' => "tab", 'class' => 'dropdown-item']) !!}
+                        <a  href='{{ route('users.edit',Auth::user()->id)}}' class ='dropdown-item'>Profile</a>
+
 
                     </div>
                 </li>
