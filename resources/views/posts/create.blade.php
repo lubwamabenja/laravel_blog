@@ -96,7 +96,7 @@
                                                         {!! Form::label('tags', 'Tags:') !!}
                                                     </div><br>
                                                     <div class="col-lg-12">
-                                                        <select name="tags[]" class="form-control select-multi" multiple="multiple">
+                                                        <select name="tags[]" class="form-control select-multi" multiple="multiple" required>
                                                             @foreach ($tags as $tag)
 
                                                              <option value="{{ $tag->id }}">{{ $tag->name}}</option>
@@ -116,7 +116,7 @@
                                                             {!! Form::label('body', 'Post Body:') !!}
                                                     </div><br>
                                                     <div class="col-lg-12">
-                                                            {!! Form::textarea('body', null, ['class' => 'form-control','id'=>'body']) !!}
+                                                            {!! Form::textarea('body', null, ['class' => 'form-control','id'=>'body','required']) !!}
                                                     </div>
                                                 </div>
                                                 <br>

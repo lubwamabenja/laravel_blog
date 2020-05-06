@@ -92,17 +92,17 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->bio = $request->input('bio');
+        if($request->hasFile('website_image')){
 
             $image = $request->file('profile_image');
-            try{
+
             $filename = time().'.'.$image->getClientOriginalExtension();
-        }catch(\Illuminate\Database\QueryException $ex){
-            dd($ex->getMessage());
-        }
             $location = public_path('images/profile/'.$filename);
             Image:: make($image)->save($location);
-
             $user->image = $filename;
+
+        }
+
 
 
         $user->save();

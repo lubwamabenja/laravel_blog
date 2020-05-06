@@ -73,15 +73,14 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->user_id = Auth::user()->id;
 
-        try{
+        if($request->hasFile('featured_image')){
             $image = $request->file('featured_image');
             $filename = time().'.'.$image->getClientOriginalExtension();
             $location = public_path('images/'.$filename);
             Image:: make($image)->save($location);
 
             $post->image = $filename;
-        }catch(\Illuminate\Database\QueryException $ex){
-            dd($ex->getMessage());
+
         }
 
 
@@ -171,6 +170,14 @@ class PostController extends Controller
         $post->slug = $request->input('slug');
         $post->category_id = $request->input('category_id');
         $post->body = $request->input('body');
+        if($request->hasFile('website_image')){
+            $image = $request->file('featured_image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image:: make($image)->save($location);
+
+            $post->image = $filename;
+        }
 
         $post->save();
         if(isset($request->tags)){

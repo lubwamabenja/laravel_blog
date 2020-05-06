@@ -20,8 +20,11 @@ Auth::routes(['verify' =>'true']);
 Route::get('/','HomeController@index')->name('home');
 Route::get('/home','HomeController@index')->name('home');
 
-//About Routes
-Route::get('about','HomeController@getAbout')->name('about');
+//Tag routes
+Route::get('tags/u/{tag_name}',['as' => 'tags.single','uses' => 'TagController@getTag']);
+
+
+
 
 
 Route::group(['middleware' => ['auth','verified']], function () {
@@ -29,7 +32,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
     Route::resource('posts', 'PostController');
      //Categories Routes
-     Route::resource('categories', 'CategoryController',['except'=> ['create']]);
+     Route::resource('categories', 'CategoryController',['except'=> ['create','getCategory']]);
 
      //tags Controller
      Route::resource('tags', 'TagController',['except'=> ['create']]);
@@ -38,7 +41,13 @@ Route::group(['middleware' => ['auth','verified']], function () {
      Route::resource('users', 'UserController');
 
 
+
+
 });
+ //About Controller
+
+Route::resource('about', 'AboutController');
+
 Route::group(['middleware' => ['web']], function () {
      //Blog routes
      Route::get('blog/{slug}',['as' => 'blogs.single','uses' => 'BlogController@getSingle'])
@@ -50,7 +59,14 @@ Route::group(['middleware' => ['web']], function () {
      Route::get('contact','ContactController@index');
      Route::post('contact','ContactController@postContact');
 
+
+
+
+
 });
+
+Route::get('category/{category}',['as' => 'categories.single','uses' => 'CategoryController@getCategory'])
+     ->where('category','[\w\d\-\_]+');
 
 //comment Controller
 Route::post('comments/{post_id}',['uses' =>'CommentsController@store','as'=>
