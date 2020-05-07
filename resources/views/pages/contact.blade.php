@@ -1,126 +1,84 @@
-@extends('main')
+@extends('layouts.main')
 
-@section('title','| Contact')
+@section('title','| All Posts')
+
 @section('content')
-          <br><br><br><br><br>
-      <!-- END header -->
+
+			<!-- Start top-post Area -->
+			<section class="top-post-area pt-10">
+				<div class="container no-padding">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="hero-nav-area">
+								<h1 class="text-white">Contact Us</h1>
+								<p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="/contact">Contact Us </a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+            <!-- End top-post Area -->
+
+            <!-- Start contact-page Area -->
+			<section class="contact-page-area pt-50 pb-120">
+				<div class="container">
+					<div class="row contact-wrap">
+						<div class="col-lg-3 d-flex flex-column address-wrap">
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-home"></span>
+								</div>
+								<div class="contact-details">
+                                    <h5>Kampala, Uganda</h5>
+                                    <p>
+
+									</p>
+
+								</div>
+							</div>
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-phone-handset"></span>
+								</div>
+								<div class="contact-details">
+									<h5>0750547466</h5>
+									<p>Mon to Fri 9am to 6 pm</p>
+								</div>
+							</div>
+							<div class="single-contact-address d-flex flex-row">
+								<div class="icon">
+									<span class="lnr lnr-envelope"></span>
+								</div>
+								<div class="contact-details">
+									<h5>support@godsofink.com</h5>
+									<p>Send us your query</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-9">
+                            <form action="{{ url('contact')}}" class="form-area contact-form text-right"  method="POST">
+                                @csrf
+								<div class="row">
+									<div class="col-lg-6">
+										<input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
+
+										<input name="email" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
+										<input name="subject" placeholder="Enter subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter subject'" class="common-input mb-20 form-control" required="" type="text">
+									</div>
+									<div class="col-lg-6">
+										<textarea class="common-textarea form-control" name="message" placeholder="Enter Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Messege'" required=""></textarea>
+									</div>
+									<div class="col-lg-12">
+
+                                        <input type="submit" style="float: right;" value="Send Message" class="btn btn-primary">
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End contact-page Area -->
 
 
-    <section class="site-section">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-md-6">
-            <h1>Contact Me</h1>
-          </div>
-        </div>
-        <div class="row blog-entries">
-          <div class="col-md-12 col-lg-8 main-content">
-
-          <form action="{{ url('contact')}}" method="POST">
-            @csrf
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <label for="subject">Subject</label>
-                      <input type="text" id="subject" name="subject" required class="form-control  ">
-                    </div>
-
-                    <div class="col-md-12 form-group">
-                      <label for="email">Email</label>
-                      <input type="email" id="email" name="email" class="form-control " required>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12 form-group">
-                      <label for="message">Write Message</label>
-                      <textarea name="message" id="message" class="form-control " cols="30" rows="8"></textarea>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 form-group">
-                      <input type="submit" value="Send Message" class="btn btn-primary">
-                    </div>
-                  </div>
-                </form>
-
-
-          </div>
-
-          <!-- END main-content -->
-
-          <div class="col-md-12 col-lg-4 sidebar">
-            <div class="sidebar-box search-form-wrap">
-              <form action="#" class="search-form">
-                <div class="form-group">
-                  <span class="icon fa fa-search"></span>
-                  <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-                </div>
-              </form>
-            </div>
-            <!-- END sidebar-box -->
-            <div class="sidebar-box">
-              <div class="bio text-center">
-                <img src="images/person_1.jpg" alt="Image Placeholder" class="img-fluid">
-                <div class="bio-body">
-                  <h2>Meagan Smith</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
-                  <p><a href="#" class="btn btn-primary btn-sm">Read my bio</a></p>
-                  <p class="social">
-                    <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                    <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                    <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                    <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <!-- END sidebar-box -->
-            <div class="sidebar-box">
-              <h3 class="heading">Popular Posts</h3>
-              <div class="post-entry-sidebar">
-                <ul>
-                    @foreach ($popularPosts as $popularPost)
-
-                        <li>
-                        <a href="">
-                            <img src="{{ asset('images/'.$popularPost->image) }}" alt="Image placeholder" class="mr-4">
-                            <div class="text">
-                            <h4>{{$popularPost->title}}</h4>
-                            <div class="post-meta">
-                                <span class="mr-2">{{ date( 'M j Y h:ia',strtotime($popularPost->created_at))}}</span>
-                            </div>
-                            </div>
-                        </a>
-                        </li>
-                    @endforeach
-
-                </ul>
-              </div>
-            </div>
-            <!-- END sidebar-box -->
-
-            <div class="sidebar-box">
-              <h3 class="heading">Categories</h3>
-              <ul class="categories">
-                @foreach ($categories as $category)
-                <li><a href="#">{{$category->name}}<span>{{$category->posts()->count()}}</span></a></li>
-                 @endforeach
-              </ul>
-            </div>
-            <!-- END sidebar-box -->
-
-            <div class="sidebar-box">
-              <h3 class="heading">Tags</h3>
-              <ul class="tags">
-                @foreach ($tags as $tag)
-                    <li><a href="#">{{$tag->name}}</a></li>
-                   @endforeach
-              </ul>
-            </div>
-          </div>
-          <!-- END sidebar -->
-
-        </div>
-      </div>
-    </section>
-
-  @endsection
+@endsection

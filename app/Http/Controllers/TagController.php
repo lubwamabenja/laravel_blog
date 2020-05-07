@@ -25,7 +25,8 @@ class TagController extends Controller
     {
         //
         $tags = Tag::all();
-        return view('tags.index')->withTags($tags);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.index')->withTags($tags)->withNotifications($notifications);
     }
 
     /**
@@ -66,7 +67,8 @@ class TagController extends Controller
         //
 
         $tag = Tag::find($id);
-        return view('tags.show')->withTag($tag);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.show')->withTag($tag)->withNotification($notifications);
     }
 
     /**
@@ -80,7 +82,8 @@ class TagController extends Controller
         //
         $tag = Tag::find($id);
         $tags = Tag::all();
-        return view('tags.edit')->withTag($tag)->withTags($tags);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.edit')->withTag($tag)->withTags($tags)->withNotifications($notifications);
     }
 
     /**

@@ -14,22 +14,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Auth::routes(['verify' =>'true']);
 
 //home Routes
 Route::get('/','HomeController@index')->name('home');
 Route::get('/home','HomeController@index')->name('home');
 
-//About Routes
-Route::get('about','HomeController@getAbout')->name('about');
+//Tag routes
+Route::get('tags/u/{tag_name}',['as' => 'tags.single','uses' => 'TagController@getTag']);
+
+
+
 
 
 Route::group(['middleware' => ['auth','verified']], function () {
+
+    Route::get('mark-as-read', 'PostController@markNotification')->name('markNotification');
     //Posts Routes
 
     Route::resource('posts', 'PostController');
      //Categories Routes
-     Route::resource('categories', 'CategoryController',['except'=> ['create']]);
+     Route::resource('categories', 'CategoryController',['except'=> ['create','getCategory']]);
 
      //tags Controller
      Route::resource('tags', 'TagController',['except'=> ['create']]);
@@ -38,7 +46,13 @@ Route::group(['middleware' => ['auth','verified']], function () {
      Route::resource('users', 'UserController');
 
 
+
+
 });
+ //About Controller
+
+Route::resource('about', 'AboutController');
+
 Route::group(['middleware' => ['web']], function () {
      //Blog routes
      Route::get('blog/{slug}',['as' => 'blogs.single','uses' => 'BlogController@getSingle'])
@@ -50,7 +64,14 @@ Route::group(['middleware' => ['web']], function () {
      Route::get('contact','ContactController@index');
      Route::post('contact','ContactController@postContact');
 
+
+
+
+
 });
+
+Route::get('category/{category}',['as' => 'categories.single','uses' => 'CategoryController@getCategory'])
+     ->where('category','[\w\d\-\_]+');
 
 //comment Controller
 Route::post('comments/{post_id}',['uses' =>'CommentsController@store','as'=>
@@ -67,5 +88,3 @@ Route::delete('comments/{id}',['uses'=>'CommentsController@destroy','as'=>
 Route::get('comments/{id}/delete',['uses'=>'CommentsController@delete','as'=>
 'comments.delete']);
 });
-
-

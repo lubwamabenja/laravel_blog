@@ -1,176 +1,236 @@
-@extends('main')
+@extends('layouts.main')
 
-@section('title',"| $post->title")
+@section('title','| Single Post')
 
 @section('content')
 
-<!-- Home -->
 
-
-          <br>
-          <br>
-          <br>
-          <br><br>
-
-      <!-- END header -->
-
-
-      <section class="site-section py-lg">
-        <div class="container">
-
-          <div class="row blog-entries element-animate">
-
-            <div class="col-md-12 col-lg-8 main-content">
-              <img src="{{ asset('images/'.$post->image) }}" alt="Image" class="img-fluid mb-5">
-               <div class="post-meta">
-                          <span class="author mr-2"><img src="{{ URL::asset('images/person_1.jpg')}}" alt="Colorlib" class="mr-2">{{$post->user->name}}</span>&bullet;
-                          <span class="mr-2">{{ date('M j,Y',strtotime($post->created_at))}}</span> &bullet;
-                          <span class="ml-2"><span class="fa fa-comments"></span> {{ $post->comments()->count()}}</span>
-                        </div>
-              <h1 class="mb-4">{{ $post->title}}</h1>
-
-              @foreach ($post->tags as $tag)
-                <a class="category mb-5" href="#">{{ $tag->name}}</a>
-              @endforeach
-
-
-              <div class="post-content-body">
-                  {!! $post->body!!}
-              </div>
-
-
-              <div class="pt-5">
-                <p>Categories:  <a href="#">{{ $post->category->name }}</a>
-              </div>
-
-
-              <div class="pt-5">
-                <h3 class="mb-5">{{ $post->comments()->count()}} Comments</h3>
-                <ul class="comment-list">
-                    @foreach ($post->comments as $comment)
-                    <li class="comment">
-                        <div class="vcard">
-                          <img src="{{ URL::asset('images/person_1.jpg') }}" alt="Image placeholder">
-                        </div>
-                        <div class="comment-body">
-                        <h3>{{ $comment->name }}</h3>
-                          <div class="meta">{{ date( 'M j Y h:ia',strtotime($comment->created_at))}}</div>
-                        <p>{{ $comment->comment }}</p>
-                          <p><a href="#" class="reply rounded">Reply</a></p>
-                        </div>
-                      </li>
-
-                    @endforeach
-                </ul>
-                <!-- END comment-list -->
-
-                <div class="comment-form-wrap pt-5">
-                  <h3 class="mb-5">Leave a comment</h3>
-                  {{ Form::open(['route' => ['comments.store',$post->id], 'method' => 'POST']) }}
-
-                    <div class="form-group">
-                        {{ Form::label('name', "Name:" )}}
-                        {{Form::text('name', null, ['class ' =>'form-control']) }}
-
+    <!-- Start top-post Area -->
+    <section class="top-post-area pt-10">
+        <div class="container no-padding">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="hero-nav-area">
+                        <h1 class="text-white">{{$post->title}}</h1>
+                        <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="/blogs">Post Types </a><span class="lnr lnr-arrow-right"></span><a href="{{ url('blog/'.$post->slug) }}">Blog Post </a></p>
                     </div>
-                    <div class="form-group">
-                        {{ Form::label('email', "Email:" )}}
-                        {{Form::email('email', null, ['class ' =>'form-control']) }}
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label('comment', "Comment:" )}}
-                      {{ Form::textarea('comment', null, ['class' => 'form-control']) }}
-                    </div>
-                    <div class="form-group">
-                     {{ Form::submit('Post Comment', ['class' =>'btn btn-primary']) }}
-                    </div>
-
-                {{ Form::close() }}
                 </div>
-              </div>
-
+                @foreach ($mainPosts as $mainPost)
+                <div class="col-lg-12">
+                    <div class="news-tracker-wrap">
+                        <h6><span>Latest Post:</span><a href="{{ url('blog/'.$mainPost->slug) }}">{{$mainPost->title}}</a></h6>
+                    </div>
+                </div>
+                @endforeach
             </div>
-
-            <!-- END main-content -->
-
-            <div class="col-md-12 col-lg-4 sidebar">
-              <div class="sidebar-box search-form-wrap">
-                <form action="#" class="search-form">
-                  <div class="form-group">
-                    <span class="icon fa fa-search"></span>
-                    <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-                  </div>
-                </form>
-              </div>
-              <!-- END sidebar-box -->
-              <div class="sidebar-box">
-                <div class="bio text-center">
-                  <img src="images/person_2.jpg" alt="Image Placeholder" class="img-fluid">
-                  <div class="bio-body">
-                    <h2>Craig David</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
-                    <p><a href="#" class="btn btn-primary btn-sm rounded">Read my bio</a></p>
-                    <p class="social">
-                      <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
-                      <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
-                      <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
-                      <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <!-- END sidebar-box -->
-              <div class="sidebar-box">
-                <h3 class="heading">Popular Posts</h3>
-                <div class="post-entry-sidebar">
-                  <ul>
-
-
-                @foreach ($popularPosts as $popularPost)
-
-                    <li>
-                      <a href="">
-                        <img src="{{ asset('images/'.$popularPost->image) }}" alt="Image placeholder" class="mr-4">
-                        <div class="text">
-                          <h4>{{$popularPost->title}}</h4>
-                          <div class="post-meta">
-                            <span class="mr-2">{{ date( 'M j Y h:ia',strtotime($popularPost->created_at))}}</span>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
-                    @endforeach
-
-                  </ul>
-                </div>
-              </div>
-              <!-- END sidebar-box -->
-
-              <div class="sidebar-box">
-                <h3 class="heading">Categories</h3>
-                <ul class="categories">
-                    @foreach ($categories as $category)
-                <li><a href="#">{{ $category->name}}<span>{{$category->posts()->count()}}</span></a></li>
-                    @endforeach
-
-                </ul>
-              </div>
-              <!-- END sidebar-box -->
-
-              <div class="sidebar-box">
-                <h3 class="heading">Tags</h3>
-                <ul class="tags">
-             @foreach ($tags as $tag)
-                  <li><a href="#">{{ $tag->name }}</a></li>
-            @endforeach
-                </ul>
-              </div>
-            </div>
-            <!-- END sidebar -->
-
-          </div>
         </div>
-      </section>
+    </section>
+    <!-- End top-post Area -->
+    <!-- Start latest-post Area -->
+    <section class="latest-post-area pb-120">
+        <div class="container no-padding">
+            <div class="row">
+                <div class="col-lg-8 post-list">
+                    <!-- Start single-post Area -->
+                    <div class="single-post-wrap">
+                        <div class="feature-img-thumb relative">
+                            <div class="overlay overlay-bg"></div>
+                            <img class="img-fluid" src="{{ asset('images/'.$post->image) }}" alt="">
+                        </div>
+                        <div class="content-wrap">
+                            <ul class="tags mt-10">
+                                <li><a href="{{ url('category/'.$post->category->name) }}">{{$post->category->name}}</a></li>
+                            </ul>
+                            <a href="#">
+                            <h3>{{$post->name}}</h3>
+                            </a>
+                            <ul class="meta pb-20">
+                                <li><a href="#"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
+                                <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date('M j,Y',strtotime($post->created_at))}}</a></li>
+                                <li><a href="#"><span class="lnr lnr-bubble"></span>{{$post->comments()->count()}} </a></li>
+                            </ul>
+                            {!!$post->body!!}
+
+                        <div class="navigation-wrap justify-content-between d-flex">
+                            <a class="prev" href="#"><span class="lnr lnr-arrow-left"></span>Prev Post</a>
+                            <a class="next" href="#">Next Post<span class="lnr lnr-arrow-right"></span></a>
+                        </div>
+
+                        <div class="comment-sec-area">
+                            <div class="container">
+                                <div class="row flex-column">
+                                    <h6>{{ $post->comments()->count()}} Comments</h6>
+                                    @foreach ($post->comments as $comment)
+                                    <div class="comment-list">
+                                        <div class="single-comment justify-content-between d-flex">
+                                            <div class="user justify-content-between d-flex">
+                                                <div class="thumb">
+                                                    <img src="{{URL::asset('major/img/blog/c1.jpg')}}" alt="">
+                                                </div>
+                                                <div class="desc">
+                                                <h5><a href="#">{{$comment->name}}</a></h5>
+                                                    <p class="date">{{ date( 'M j Y h:ia',strtotime($comment->created_at))}}</p>
+                                                    <p class="comment">
+                                                       {{$comment->comment}}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="reply-btn">
+                                                <a href="" class="text-uppercase">reply</a>
+                                            </div>
+                                        </div>
+                                        {{ Form::open(['route' => ['comments.store',$post->id], 'method' => 'POST']) }}
+
+                                        <div class="form-group">
+                                            {{ Form::textarea('reply', null, ['class' => 'form-control ','rows'=>'2','required=""',
+                                            'onfocus'=>"this.placeholder = ''",'onblur'=>"this.placeholder = 'reply'",'placeholder'=>'Enter Comment']) }}
+
+                                        </div>
+                                        {!! Form::close() !!}
+
+                                        <div class="reply-btn">
+                                            <a href="" class="text-uppercase">reply</a>
+                                        </div>
+
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comment-form">
+                        <h4>Post Comment</h4>
+
+                    {{ Form::open(['route' => ['comments.store',$post->id], 'method' => 'POST']) }}
+                            <div class="form-group form-inline">
+                                <div class="form-group col-lg-6 col-md-12 name">
+                                    {{Form::text('name', null, ['class ' =>'form-control','placeholder'=>'Enter Name',
+                                    'onfocus'=>"this.placeholder = ''",'onblur'=>"this.placeholder = 'Enter Name'"]) }}
+
+                                </div>
+                                <div class="form-group col-lg-6 col-md-12 email">
+                                    {{Form::email('email', null, ['class ' =>'form-control','placeholder'=>'Enter Email',
+                                    'onfocus'=>"this.placeholder = ''",'onblur'=>"this.placeholder = 'Enter Email'",'required']) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ Form::textarea('comment', null, ['class' => 'form-control mb-10','required=""',
+                                'onfocus'=>"this.placeholder = ''",'onblur'=>"this.placeholder = 'Enter Email'",'placeholder'=>'Enter Comment']) }}
+
+                            </div>
+                            {{ Form::submit('Post Comment', ['class' =>'primary-btn text-uppercase']) }}
+
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+                <!-- End single-post Area -->
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebars-area">
+
+                    <div class="single-sidebar-widget newsletter-widget">
+                        <h6 class="title">Newsletter</h6>
+                        <p>
+                            Here, I focus on a range of items
+                            andfeatures that we use in life without
+                            giving them a second thought.
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="col-autos">
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" type="text">
+                                </div>
+                            </div>
+                            <a href="#" class="bbtns">Subcribe</a>
+                        </div>
+                        <p>
+                            You can unsubscribe us at any time
+                        </p>
+                    </div>
+                    <div class="single-sidebar-widget most-popular-widget">
+                        <h6 class="title">Most Popular</h6>
+                        @foreach ($popularPosts as $popularPost)
+
+
+                        <div class="single-list flex-row d-flex">
+                            <div class="thumb">
+                                <img src="{{ asset('images/'.$popularPost->image) }}" width="100px" alt="">
+                            </div>
+                            <div class="details">
+                                <a href="image-post.html">
+                                    <h6>{{$popularPost->title}}</h6>
+                                </a>
+                                <ul class="meta">
+                                    <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date('M j,Y',strtotime($popularPost->created_at))}}</a></li>
+                                <li><a href="#"><span class="lnr lnr-bubble"></span>{{$popularPost->comments()->count()}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        @endforeach
+
+                    </div>
+
+                    <div class="single-sidebar-widget social-network-widget" style="margin-bottom: 80px">
+                        <h6 class="title">Tags</h6>
+
+                        <ul class="tags">
+                            @foreach ($tags as $tag)
+                                <li><a href="{{ url('tags/u/'.$tag->name) }}">{{$tag->name}}</a></li>
+                               @endforeach
+                        </ul>
+
+                    </div>
+                    <div class="single-sidebar-widget social-network-widget">
+                        <h6 class="title">Social Networks</h6>
+
+                            <ul class="categories">
+                                @foreach ($categories as $category)
+                                <li><a href="{{ url('category/'.$category->name) }}">{{$category->name}}<span>{{$category->posts()->count()}}</span></a></li>
+                                 @endforeach
+                            </ul>
+                    </div>
+                    <div class="single-sidebar-widget social-network-widget">
+                        <h6 class="title">Social Networks</h6>
+                        <ul class="social-list">
+                            <li class="d-flex justify-content-between align-items-center fb">
+                                <div class="icons d-flex flex-row align-items-center">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+
+                                </div>
+                                <a href="#">Like our page</a>
+                            </li>
+                            <li class="d-flex justify-content-between align-items-center tw">
+                                <div class="icons d-flex flex-row align-items-center">
+                                    <i class="fa fa-twitter" aria-hidden="true"></i>
+
+                                </div>
+                                <a href="#">Follow Us</a>
+                            </li>
+                            <li class="d-flex justify-content-between align-items-center yt">
+                                <div class="icons d-flex flex-row align-items-center">
+                                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
+
+                                </div>
+                                <a href="#">Subscribe</a>
+                            </li>
+                            <li class="d-flex justify-content-between align-items-center rs">
+                                <div class="icons d-flex flex-row align-items-center">
+                                    <i class="fa fa-rss" aria-hidden="true"></i>
+
+                                </div>
+                                <a href="#">Subscribe</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End latest-post Area -->
+
 
 @endsection

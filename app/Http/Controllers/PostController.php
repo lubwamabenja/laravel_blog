@@ -32,8 +32,16 @@ class PostController extends Controller
     {
         //
         $posts = Post::orderBy('id','desc')->paginate(10);
+        $notifications = auth()->user()->unreadNotifications;
 
-        return view('posts.index')->withPosts($posts);
+        return view('posts.index')->withPosts($posts)->withNotifications($notifications);
+    }
+
+    public function markNotification(){
+        $id = auth()->user()->unreadNotifications[0]->id;
+        auth()->user()->unreadNotifications->where('id', $id)->markAsRead();
+
+        return redirect()->back();
     }
 
 /**
@@ -46,7 +54,8 @@ class PostController extends Controller
         //
         $categories = Category::all();
         $tags = Tag::all();
-        return view('posts.create')->withCategories($categories)->withTags($tags);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('posts.create')->withCategories($categories)->withTags($tags)->withNotifications($notifications);
     }
 
     /**
@@ -67,21 +76,19 @@ class PostController extends Controller
         ));
 
         $post = new Post;
+
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         $post->body = $request->body;
         $post->user_id = Auth::user()->id;
-
-        try{
+        if($request->hasFile('featured_image')){
             $image = $request->file('featured_image');
             $filename = time().'.'.$image->getClientOriginalExtension();
             $location = public_path('images/'.$filename);
-            Image:: make($image)->save($location);
-
+            Image:: make($image)->resize(750,450)->save($location);
             $post->image = $filename;
-        }catch(\Illuminate\Database\QueryException $ex){
-            dd($ex->getMessage());
+
         }
 
 
@@ -91,6 +98,7 @@ class PostController extends Controller
 
         $request->session()->flash('success', 'The post was successfuly saved');
         return redirect()->route('posts.show',$post->id);
+
 
 
 
@@ -108,7 +116,8 @@ class PostController extends Controller
     {
         //
         $post = Post::find($id);
-        return view('posts.show')->withPost($post);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('posts.show')->withPost($post)->withNotifications($notifications);
     }
 
     /**
@@ -132,8 +141,8 @@ class PostController extends Controller
             $tags2[$tag->id] = $tag->name;
         }
 
-
-        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2)->withNotifications($notifications);
     }
 
     /**
@@ -171,6 +180,14 @@ class PostController extends Controller
         $post->slug = $request->input('slug');
         $post->category_id = $request->input('category_id');
         $post->body = $request->input('body');
+        if($request->hasFile('featured_image')){
+            $image = $request->file('featured_image');
+            $filename = time().'.'.$image->getClientOriginalExtension();
+            $location = public_path('images/'.$filename);
+            Image:: make($image)->save($location);
+
+            $post->image = $filename;
+        }
 
         $post->save();
         if(isset($request->tags)){

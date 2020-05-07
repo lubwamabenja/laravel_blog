@@ -61,7 +61,8 @@
 
                                                 <!--Form starts here======================================= -->
 
-                                                {!! Form::model($post, ['route' => ['posts.update',$post->id],'method' =>'PUT']) !!}
+                                                {!! Form::model($post, ['route' => ['posts.update',$post->id],'method' =>'PUT',
+                                                'enctype' =>'multipart/form-data']) !!}
                                                 <div class="row">
                                                     <div class="col-lg-2"><br>
                                                             {!! Form::label('title', 'Title:') !!}
@@ -92,6 +93,12 @@
                                                         {{ Form::select('tags[]', $tags, null, ['class'=>'form-control select-multi',
                                                         'multiple' => 'multiple']) }}
                                                     </div>
+                                                    <div class="col-lg-3">
+                                                        {!! Form::label('featured_image', 'Upload Featured Image:') !!}
+                                                    </div><br>
+                                                    <div class="col-lg-12">
+                                                        {!! Form::file('featured_image', null, ['class' => 'form-control']) !!}
+                                                    </div><br>
                                                      <div  class="col-lg-2"><br>
                                                             {!! Form::label('body', 'Post Body:',['style' => 'margin-top:0px']) !!}
 
@@ -99,7 +106,7 @@
 
                                                     <div class="col-lg-12">
 
-                                                            {!! Form::textarea('body', null, ['class' => 'form-control ckeditor','id' =>'body']) !!}
+                                                            {!! Form::textarea('body', null, ['class' => 'form-control ','id' =>'body']) !!}
 
                                                     </div>
                                                 </div>
@@ -148,5 +155,3 @@
       $('.select-multi').select2();
   </script>
 @endsection
-
-

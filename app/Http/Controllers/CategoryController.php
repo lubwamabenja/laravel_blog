@@ -25,7 +25,8 @@ class CategoryController extends Controller
     {
         //
         $categories = Category::all();
-        return view('categories.index')->withCategories($categories);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('categories.index')->withCategories($categories)->withNotifications($notifications);
     }
 
 

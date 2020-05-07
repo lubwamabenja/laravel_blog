@@ -39,8 +39,7 @@
                                     <tr>
                                         <th data-field="id">  ID</th>
                                         <th data-field="title" >Title</th>
-                                        <th data-field="body" >Body</th>
-                                        <th data-field="created_at" >Created at</th>
+                                        <th data-field="body" >created_at</th>
                                         <th>Options</th>
 
                                     </tr>
@@ -50,7 +49,6 @@
                                      <tr>
                                         <td> <strong>{{ $post->id }}</strong> </td>
                                         <td> <strong>{{ $post->title}}</strong></td>
-                                        <td>{!! substr($post->body,0,40) !!}{{ strlen($post->body) > 50 ?".....":" "}} </td>
                                         <td>{{ date('M j,Y',strtotime($post->created_at))}}</td>
                                         <td>
                                             {!! Form::open(['route' => ['posts.destroy',$post->id],'method'=>'DELETE']) !!}

@@ -1,11 +1,24 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar">
         <div class="sidebar-header">
-            <a href="#"><img src="img/message/1.jpg" alt="" />
+            <a href="#"><img src="{{ asset('images/profile/'.Auth::user()->image) }}" alt="" />
             </a>
-            <h3>Andrar Son</h3>
-            <p>Developer</p>
-            <strong>AP+</strong>
+            <h3>{{Auth::user()->name}}</h3>
+            <p>Admin</p>
+            <?php
+                function createAcronym($string){
+                    $output = null;
+                    $token = strtok($string,' ');
+                    while ($token !== false) {
+                        $output = $token[0];
+                        $token = strtok(' ');
+                    }
+                    return '<strong>'.$output.'+<strong>';
+                }
+                $string = Auth::user()->name;
+                echo createAcronym($string,false);
+            ?>
+
         </div>
         <div class="left-custom-menu-adp-wrap">
             <ul class="nav navbar-nav left-sidebar-menu-pro">
@@ -23,7 +36,10 @@
                         {!! Html::linkRoute('posts.index','Posts',['data-toggle' => "tab", 'class' => 'dropdown-item']) !!}
                         {!! Html::linkRoute('categories.index','Categories',['data-toggle' => "tab", 'class' => 'dropdown-item']) !!}
                         {!! Html::linkRoute('tags.index','Tags',['data-toggle' => "tab", 'class' => 'dropdown-item']) !!}
+                        <a  href='{{ route('register')}}' class ='dropdown-item'>Register</a>
                         <a  href='{{ route('users.edit',Auth::user()->id)}}' class ='dropdown-item'>Profile</a>
+                        <a  href='{{ route('about.edit',1)}}' class ='dropdown-item'>About</a>
+
 
 
                     </div>

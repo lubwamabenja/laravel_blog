@@ -15,23 +15,23 @@
                 <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12">
                     <div class="header-top-menu tabl-d-n">
                         <ul class="nav navbar-nav mai-top-nav">
-                            <li class="nav-item"><a href="#" class="nav-link">Home</a>
+                            <li class="nav-item"><a href="/" class="nav-link">Home</a>
                             </li>
-                            <li class="nav-item"><a href="#" class="nav-link">About</a>
+                            <li class="nav-item"><a href="/blogs" class="nav-link">Blogs</a>
                             </li>
-                            <li class="nav-item"><a href="#" class="nav-link">Services</a>
+                            <li class="nav-item"><a href="/about" class="nav-link">About</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">Project <span class="angle-down-topmenu"><i class="fa fa-angle-down"></i></span></a>
                                 <div role="menu" class="dropdown-menu animated flipInX">
-                                    <a href="#" class="dropdown-item">Company Info</a>
-                                    <a href="#" class="dropdown-item">Documentation</a>
-                                    <a href="#" class="dropdown-item">Expert Backend</a>
-                                    <a href="#" class="dropdown-item">Expert FrontEnd</a>
-                                    <a href="#" class="dropdown-item">Contact Support</a>
+                                    <a href="#" class="dropdown-item">Poems</a>
+                                    <a href="/blogs" class="dropdown-item">Blogs</a>
+                                    <a href="#" class="dropdown-item">Images</a>
+                                    <a href="#" class="dropdown-item">Videos</a>
+
                                 </div>
                             </li>
-                            <li class="nav-item"><a href="#" class="nav-link">Support</a>
+                            <li class="nav-item"><a href="/contact" class="nav-link">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -106,58 +106,36 @@
                                         <h1>Notifications</h1>
                                     </div>
                                     <ul class="notification-menu">
-                                        <li>
-                                            <a href="#">
-                                                <div class="notification-icon">
-                                                    <span class="adminpro-icon adminpro-checked-pro"></span>
-                                                </div>
-                                                <div class="notification-content">
-                                                    <span class="notification-date">16 Sept</span>
-                                                    <h2>Advanda Cro</h2>
-                                                    <p>Please done this project as soon possible.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="notification-icon">
-                                                    <span class="adminpro-icon adminpro-cloud-computing-down"></span>
-                                                </div>
-                                                <div class="notification-content">
-                                                    <span class="notification-date">16 Sept</span>
-                                                    <h2>Sulaiman din</h2>
-                                                    <p>Please done this project as soon possible.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="notification-icon">
-                                                    <span class="adminpro-icon adminpro-shield"></span>
-                                                </div>
-                                                <div class="notification-content">
-                                                    <span class="notification-date">16 Sept</span>
-                                                    <h2>Victor Jara</h2>
-                                                    <p>Please done this project as soon possible.</p>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <div class="notification-icon">
-                                                    <span class="adminpro-icon adminpro-analytics-arrow"></span>
-                                                </div>
-                                                <div class="notification-content">
-                                                    <span class="notification-date">16 Sept</span>
-                                                    <h2>Victor Jara</h2>
-                                                    <p>Please done this project as soon possible.</p>
-                                                </div>
-                                            </a>
-                                        </li>
+
+                                        @if(Auth::user()->id == 1)
+                                            @forelse($notifications as $notification)
+                                            <li>
+                                            <a href="{{route('markNotification')}}" class="float-right mark-as-read" data-id="{{ $notification->id }}">
+                                                    <div class="notification-icon">
+                                                        <span class="adminpro-icon adminpro-checked-pro"></span>
+                                                    </div>
+
+                                                    <div class="notification-content">
+                                                        <span class="notification-date">{{ date('M j,Y',strtotime($notification->created_at)) }}</span>
+                                                        <h2>{{ $notification->data['name'] }}</h2>
+                                                        <p>{{ $notification->data['email'] }} has been registered</p>
+                                                    </div>
+                                                </a>
+                                            </li>
                                     </ul>
-                                    <div class="notification-view">
-                                        <a href="#">View All Notification</a>
+                                    @if($loop->last)
+                                    <div style="color: #fff" class="notification-view">
+                                            <a href="#" id="mark-all">
+                                                Mark all as read
+                                            </a>
                                     </div>
+                                        @endif
+                                    @empty
+                                    <div style="color: #fff;text-align:center" class="notification-view">
+                                        There are no new notifications
+                                    </div>
+                                    @endforelse
+                                @endif
                                 </div>
                             </li>
                             <li class="nav-item">

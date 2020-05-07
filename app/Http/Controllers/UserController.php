@@ -28,7 +28,8 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-        return view('users.index')->withUsers($users);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('users.index')->withUsers($users)->withNotifications($notifications);
     }
 
     /**

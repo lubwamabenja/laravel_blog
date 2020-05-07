@@ -72,7 +72,8 @@ class CommentsController extends Controller
     {
         //
         $comment = Comment::find($id);
-        return view('comments.edit')->withComment($comment);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('comments.edit')->withComment($comment)->withNotifications($notifications);
     }
 
     /**

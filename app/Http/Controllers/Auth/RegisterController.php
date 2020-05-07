@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware(['auth','verified']);
     }
 
     /**
@@ -69,5 +69,11 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm()
+    {
+        $notifications = auth()->user()->unreadNotifications;
+        return view('auth.register')->withNotifications($notifications);
     }
 }

@@ -1,29 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
-    @include('pagePartials._head')
-
-  </head>
-
-  <body>
-    <div class="wrap">
-        <div class="super_container">
-
-
-            @include('pagePartials._nav')
-            @include('pagePartials._messages')
-
-
-            @yield('content')
-
-
-
-            @include('pagePartials._scripts')
-        </div>
+<head>
+    @include('mainPartials._head')
+</head>
+<body>
+    @include('mainPartials._header')
+    <div class="site-main-container">
+        @yield('content')
     </div>
-  </body>
+
+
+    @include('mainPartials._scripts')
+</body>
 </html>
-
-

@@ -160,3 +160,4 @@
             $('.select-multi').select2();
         </script>
 @endsection
+
