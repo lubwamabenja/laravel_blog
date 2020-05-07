@@ -13,7 +13,7 @@
             <div class="col-lg-8 top-post-left">
                 <div class="feature-image-thumb relative">
                     <div class="overlay overlay-bg"></div>
-                    <img class="img-fluid" src="{{ asset('images/'.$mainPost->image) }}" alt="">
+                    <img class="img-fluid" height="100%" width="10px" src="{{ asset('images/'.$mainPost->image) }}" alt="">
                 </div>
                 <div class="top-post-details">
                     <ul class="tags">

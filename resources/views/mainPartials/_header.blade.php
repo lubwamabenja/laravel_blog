@@ -41,9 +41,17 @@
                     <li class="menu-active"><a class="{{ Request::is('home')? "active":"" }}" href="/">Home</a></li>
                     <li><a href="/blogs">Blogs</a></li>
                     <li><a href="/about">About</a></li>
-                <li><a href="#">Portfolio</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/login">login</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                @guest
+                    <li><a href="/login">login</a></li>
+
+                @else
+                    <li><a href="/posts">admin</a></li>
+
+                @endguest
+
+
             </ul>
             </nav><!-- #nav-menu-container -->
             <div class="navbar-right">

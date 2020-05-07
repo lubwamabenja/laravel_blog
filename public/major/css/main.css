@@ -3337,3 +3337,55 @@ div.thumbnail_container .overlay-bg {
 .footer-area .footer-bottom .footer-social a:hover {
   background: #f6214b;
 }
+
+.selected{
+    color: #f6214b;
+}
+.categories, .sidelink {
+padding: 0;
+margin: 0;
+font-weight: 400; }
+.categories li, .sidelink li {
+padding: 0;
+margin: 0;
+position: relative;
+margin-bottom: 10px;
+padding-bottom: 10px;
+border-bottom: 1px dotted #dee2e6;
+list-style: none; }
+.categories li:last-child, .sidelink li:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0; }
+.categories li a, .sidelink li a {
+  display: block;
+  font-size: 16px; }
+  .categories li a span, .sidelink li a span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #ccc;
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease; }
+  .categories li a:hover span, .sidelink li a:hover span {
+    color: #000; }
+.categories li.active a, .sidelink li.active a {
+  color: #000;
+  font-style: italic; }
+  .tags {
+padding: 0;
+margin: 0;
+font-weight: 400; }
+.tags li {
+padding: 0;
+margin: 0 4px 4px 0;
+float: left;
+display: inline-block; }
+.tags li a {
+  float: left;
+  display: block;
+  border-radius: 4px;
+  padding: 2px 6px;
+  color: #fff;
+  background: #f6214b;}

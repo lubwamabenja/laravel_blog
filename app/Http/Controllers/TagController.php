@@ -30,7 +30,8 @@ class TagController extends Controller
     {
         //
         $tags = Tag::all();
-        return view('tags.index')->withTags($tags);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.index')->withTags($tags)->withNotifications($notifications);;
     }
 
     public function getTag($tag){
@@ -42,8 +43,10 @@ class TagController extends Controller
         $posts = $tag->posts()->paginate(8);
         $popularPosts = Post::orderBy('views','desc')->limit(6)->get();
         $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
+        $notifications = auth()->user()->unreadNotifications;
         return view('tags.single')->withtag($tag)->withTags($tags)->withCategories($categories)->
-        withLatestPosts($latestPosts)->withPosts($posts)->withPopularPosts($popularPosts)->withMainPosts($mainPosts);
+        withLatestPosts($latestPosts)->withPosts($posts)
+        ->withPopularPosts($popularPosts)->withMainPosts($mainPosts)->withNotifications($notifications);;
     }
 
     /**
@@ -84,7 +87,8 @@ class TagController extends Controller
         //
 
         $tag = Tag::find($id);
-        return view('tags.show')->withTag($tag);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.show')->withTag($tag)->withNotifications($notifications);;
     }
 
     /**
@@ -98,7 +102,8 @@ class TagController extends Controller
         //
         $tag = Tag::find($id);
         $tags = Tag::all();
-        return view('tags.edit')->withTag($tag)->withTags($tags);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.edit')->withTag($tag)->withTags($tags)->withNotifications($notifications);;
     }
 
     /**

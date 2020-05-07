@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero-nav-area">
-                        <h1 class="text-white">Blog Post</h1>
-                        <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="#">Post Types </a><span class="lnr lnr-arrow-right"></span><a href="image-post.html">Blog Post </a></p>
+                        <h1 class="text-white">{{$post->title}}</h1>
+                        <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="/blogs">Post Types </a><span class="lnr lnr-arrow-right"></span><a href="{{ url('blog/'.$post->slug) }}">Blog Post </a></p>
                     </div>
                 </div>
                 @foreach ($mainPosts as $mainPost)

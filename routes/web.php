@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+
 Auth::routes(['verify' =>'true']);
 
 //home Routes
@@ -28,6 +31,8 @@ Route::get('tags/u/{tag_name}',['as' => 'tags.single','uses' => 'TagController@g
 
 
 Route::group(['middleware' => ['auth','verified']], function () {
+
+    Route::get('mark-as-read', 'PostController@markNotification')->name('markNotification');
     //Posts Routes
 
     Route::resource('posts', 'PostController');

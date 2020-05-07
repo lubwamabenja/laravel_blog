@@ -15,9 +15,9 @@
                         </div>
                         <div class="col-lg-6">
                             <ul class="breadcome-menu">
-                                <li><a href="#">Home</a> <span class="bread-slash">/</span>
+                                <li><a href="/posts">Home</a> <span class="bread-slash">/</span>
                                 </li>
-                                <li><span class="bread-blod">Compose Mail</span>
+                            <li><span class="bread-blod">@yield('action')</span>
                                 </li>
                             </ul>
                         </div>

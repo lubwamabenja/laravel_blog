@@ -7,6 +7,10 @@
     {{ session('status') }}
 </div>
 @endif
+
+
+
+
 <div class="data-table-area mg-b-15">
     <div class="container-fluid">
         <div class="row">
@@ -79,4 +83,12 @@
     </div>
 </div>
 
+
+
+
 @endsection
+
+
+
+
+

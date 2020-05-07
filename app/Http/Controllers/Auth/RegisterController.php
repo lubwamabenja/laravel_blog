@@ -70,4 +70,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    public function showRegistrationForm()
+    {
+        $notifications = auth()->user()->unreadNotifications;
+        return view('auth.register')->withNotifications($notifications);
+    }
 }

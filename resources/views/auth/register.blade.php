@@ -1,5 +1,5 @@
 @extends('admin')
-
+@section('action',' Create User')
 @section('content')
      <!-- Register Start-->
      <div class="login-form-area mg-t-30 mg-b-15">
@@ -22,10 +22,7 @@
                                 <div class="col-lg-12">
                                     <div class="login-title">
                                         <h1>{{ __('Create a User') }}</h1>
-                                        @if (Session::has('success')){
-                                            <strong>{{ Session::get('success')}}</strong>
-                                            }
-                                        @endif
+
                                     </div>
                                 </div>
                             </div>

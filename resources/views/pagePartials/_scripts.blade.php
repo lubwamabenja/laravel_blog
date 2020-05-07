@@ -10,3 +10,7 @@
 <script src="{{ URL::asset('main/styles/bootstrap4/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('main/js/custom.js') }}"></script>
 <script src="{{ URL::asset('main/js/main.js') }}"></script>
+
+
+
+

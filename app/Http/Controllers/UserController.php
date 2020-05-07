@@ -28,7 +28,8 @@ class UserController extends Controller
     {
         //
         $users = User::all();
-        return view('users.index')->withUsers($users);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('users.index')->withUsers($users)->withNotifications($notifications);;
     }
 
     /**
@@ -75,7 +76,8 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        return view('users.edit')->withUser($user);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('users.edit')->withUser($user)->withNotifications($notifications);;
     }
 
     /**
@@ -92,7 +94,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->input('name');
         $user->bio = $request->input('bio');
-        if($request->hasFile('website_image')){
+        if($request->hasFile('profile_image')){
 
             $image = $request->file('profile_image');
 

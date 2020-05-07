@@ -12,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="hero-nav-area">
                         <h1 class="text-white">All Posts</h1>
-                        <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="category.html">All Posts</a></p>
+                        <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a href="/blogs">All Posts</a></p>
                     </div>
                 </div>
                 @foreach ($mainPosts as $mainPost)
