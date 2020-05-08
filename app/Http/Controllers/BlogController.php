@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\Img;
 use App\Portfolio;
 use App\Post;
 use App\Tag;
@@ -50,11 +49,11 @@ class BlogController extends Controller
     public function getImages(){
         $tags = Tag::all();
         $categories = Category::all();
-        $images= Portfolio::orderBy('id','desc')->paginate(10);
+        $portfolios = Portfolio::orderBy('id','desc')->paginate(12);
         $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
 
         return view('blogs.images')->withTags($tags)->withCategories($categories)
-        ->withMainPosts($mainPosts)->withImages($images);
+        ->withMainPosts($mainPosts)->withPortfolios($portfolios);
     }
 
 }

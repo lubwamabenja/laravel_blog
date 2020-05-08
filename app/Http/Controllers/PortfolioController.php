@@ -23,8 +23,7 @@ class PortfolioController extends Controller
     {
         //
         //
-        $notifications = auth()->user()->unreadNotifications;
-        return view('portfolios.create')->withNotifications($notifications);
+
     }
 
     /**
@@ -35,6 +34,8 @@ class PortfolioController extends Controller
     public function create()
     {
         //
+        $notifications = auth()->user()->unreadNotifications;
+        return view('portfolios.create')->withNotifications($notifications);
     }
 
     /**
@@ -46,16 +47,17 @@ class PortfolioController extends Controller
     public function store(Request $request)
     {
         //
-        dd($request);
-        $portfolio = new Portfolio();
-        if($request->hasFile('portolio')){
-            $image = $request->file('portfolio');
-            $filename = time().'.'.$image->getClientOriginalExtension();
-            $location = public_path('images/portfolios/'.$filename);
-            Image:: make($image)->resize(750,450)->save($location);
-            $portfolio->image = $filename;
 
-        }
+        $portfolio = new Portfolio();
+
+        $image = $request->file('portfolio');
+        $filename = time().'.'.$image->getClientOriginalExtension();
+        $location = public_path('images/portfolios/'.$filename);
+        Image:: make($image)->save($location);
+        $portfolio->portfolio = $filename;
+        $portfolio->save();
+
+
         $request->session()->flash('success', 'Image has Been Uploaded');
         return redirect()->route('portfolios.create');
 

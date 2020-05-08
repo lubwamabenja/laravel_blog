@@ -47,11 +47,13 @@ class AboutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+
         $notifications = auth()->user()->unreadNotifications;
         return view('about.create')->withNotifications($notifications);
+
     }
 
     /**
@@ -63,7 +65,13 @@ class AboutController extends Controller
     public function store(Request $request)
     {
         //
-         //
+        $about = About::orderBy('id','desc')->limit(1)->first();
+        if(!empty($about)){
+            $about = About::orderBy('id','desc')->limit(1)->first();
+            $request->session()->flash('failure','You cannot add another page, You can just edit');
+            return redirect()->route('about.edit',$about['id']);
+        }
+        else{
          $about = new About;
          $about->description = $request->input('description');
          if($request->hasFile('website_image')){
@@ -82,6 +90,7 @@ class AboutController extends Controller
 
          $request->session()->flash('success', 'Page was successfuly Created');
          return redirect()->route('about.edit',$about->id);
+        }
     }
 
     /**
