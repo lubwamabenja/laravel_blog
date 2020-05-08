@@ -76,7 +76,8 @@ class UserController extends Controller
     {
         //
         $user = User::find($id);
-        return view('users.edit')->withUser($user);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('users.edit')->withUser($user)->withNotifications($notifications);
     }
 
     /**

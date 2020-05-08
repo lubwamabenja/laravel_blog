@@ -40,14 +40,14 @@
             <div class="col-lg-3 col-md-6 single-footer-widget">
                 <h4>Instragram Feed</h4>
                 <ul class="instafeed d-flex flex-wrap">
-                    <li><img src="major/img/i1.jpg" alt=""></li>
-                    <li><img src="major/img/i2.jpg" alt=""></li>
-                    <li><img src="major/img/i3.jpg" alt=""></li>
-                    <li><img src="major/img/i4.jpg" alt=""></li>
-                    <li><img src="major/img/i5.jpg" alt=""></li>
-                    <li><img src="major/img/i6.jpg" alt=""></li>
-                    <li><img src="major/img/i7.jpg" alt=""></li>
-                    <li><img src="major/img/i8.jpg" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i1.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i2.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i3.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i4.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i5.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i6.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i7.jpg')}}" alt=""></li>
+                    <li><img src="{{URL::asset('major/img/i8.jpg')}}" alt=""></li>
                 </ul>
             </div>
         </div>

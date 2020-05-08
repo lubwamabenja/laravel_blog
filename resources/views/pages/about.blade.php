@@ -44,7 +44,7 @@
                             <h3>About Us</h3>
                             </a><br>
 
-                            {!!$about->body!!}
+                            {!!$about->description!!}
 
 
 
@@ -165,3 +165,4 @@
 
 
 @endsection
+

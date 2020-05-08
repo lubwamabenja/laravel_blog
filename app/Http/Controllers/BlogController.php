@@ -45,4 +45,11 @@ class BlogController extends Controller
 
     }
 
+    public function getImages(){
+        $tags = Tag::all();
+        $categories = Category::all();
+        $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
+        return view('blogs.images')->withTags($tags)->withCategories($categories)->withMainPosts($mainPosts);
+    }
+
 }

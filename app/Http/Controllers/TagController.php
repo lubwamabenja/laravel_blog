@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
 
@@ -27,6 +29,21 @@ class TagController extends Controller
         $tags = Tag::all();
         $notifications = auth()->user()->unreadNotifications;
         return view('tags.index')->withTags($tags)->withNotifications($notifications);
+    }
+
+    public function getTag($tag){
+
+        $tags = Tag::all();
+        $categories = Category::all();
+        $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
+        $tag = Tag::where('name','=',$tag)->first();
+        $posts = $tag->posts()->paginate(8);
+        $popularPosts = Post::orderBy('views','desc')->limit(6)->get();
+        $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
+        $notifications = auth()->user()->unreadNotifications;
+        return view('tags.single')->withtag($tag)->withTags($tags)->withCategories($categories)->
+        withLatestPosts($latestPosts)->withPosts($posts)
+        ->withPopularPosts($popularPosts)->withMainPosts($mainPosts)->withNotifications($notifications);;
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -28,6 +30,20 @@ class CategoryController extends Controller
         $notifications = auth()->user()->unreadNotifications;
         return view('categories.index')->withCategories($categories)->withNotifications($notifications);
     }
+
+    public function getCategory($category,Request $request){
+
+        $tags = Tag::all();
+        $categories = Category::all();
+        $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
+        $category = Category::where('name','=',$category)->first();
+        $posts = $category->posts()->paginate(8);
+        $popularPosts = Post::orderBy('views','desc')->limit(6)->get();
+        $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
+        return view('categories.single')->withCategory($category)->withTags($tags)->withCategories($categories)->
+        withLatestPosts($latestPosts)->withPosts($posts)->withPopularPosts($popularPosts)->withMainPosts($mainPosts);
+    }
+
 
 
 

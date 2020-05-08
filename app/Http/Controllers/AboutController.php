@@ -36,8 +36,9 @@ class AboutController extends Controller
         $popularPosts = Post::orderBy('views','desc')->limit(3)->get();
         $abouts = About::all();
         $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
+        $notifications = auth()->user()->unreadNotifications;
         return view('pages.about')->withPosts($posts)->withTags($tags)->withCategories($categories)->withlatestPosts($latestPosts)
-        ->withPopularPosts($popularPosts)->withAbouts($abouts)->withmainPosts($mainPosts);
+        ->withPopularPosts($popularPosts)->withAbouts($abouts)->withmainPosts($mainPosts)->withNotifications($notifications);
     }
 
 
@@ -50,7 +51,8 @@ class AboutController extends Controller
     public function create()
     {
         //
-        return view('about.create');
+        $notifications = auth()->user()->unreadNotifications;
+        return view('about.create')->withNotifications($notifications);
     }
 
     /**
@@ -104,7 +106,8 @@ class AboutController extends Controller
     {
         //
         $about = About::find($id);
-        return view('about.edit')->withAbout($about);
+        $notifications = auth()->user()->unreadNotifications;
+        return view('about.edit')->withAbout($about)->withNotifications($notifications);
     }
 
     /**

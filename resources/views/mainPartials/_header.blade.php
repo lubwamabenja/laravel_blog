@@ -41,7 +41,7 @@
                     <li class="menu-active"><a class="{{ Request::is('home')? "active":"" }}" href="/">Home</a></li>
                     <li><a href="/blogs">Blogs</a></li>
                     <li><a href="/about">About</a></li>
-                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="/blogs/images">Images</a></li>
                     <li><a href="/contact">Contact</a></li>
                 @guest
                     <li><a href="/login">login</a></li>

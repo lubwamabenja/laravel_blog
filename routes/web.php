@@ -58,6 +58,7 @@ Route::group(['middleware' => ['web']], function () {
      Route::get('blog/{slug}',['as' => 'blogs.single','uses' => 'BlogController@getSingle'])
      ->where('slug','[\w\d\-\_]+');
      Route::get('blogs',['uses'=>'BlogController@getIndex','as'=>'blogs.index']);
+     Route::get('blogs/images',['uses'=>'BlogController@getImages','as'=>'blogs.images']);
 
      //contact routes
 
