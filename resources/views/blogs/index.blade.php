@@ -50,7 +50,7 @@
                                     <h4>{{$post->title}}</h4>
                                 </a>
                                 <ul class="meta">
-                                    <li><a href="#"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
+                                    <li><a href="{{ url('bloggers/'.$post->user->name) }}"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
                                     <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date( 'M j Y',strtotime($post->created_at))}}</a></li>
                                     <li><a href="#"><span class="lnr lnr-bubble"></span>{{$post->comments()->count()}}Comments</a></li>
                                 </ul>

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title',"| $category->name Posts")
+@section('title',"| $user->name Posts")
 
 @section('content')
 
@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="hero-nav-area">
-                        <h1 class="text-white">{{$category->name }} Posts</h1>
-                        <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a>Category</a> <span class="lnr lnr-arrow-right"></span><a>{{$category->name}}</a></p>
+                        <h1 class="text-white">{{$user->name }} Posts</h1>
+                        <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a>Bloggers</a> <span class="lnr lnr-arrow-right"></span><a>{{$user->name}}</a></p>
                     </div>
                 </div>
                 @foreach ($mainPosts as $mainPost)

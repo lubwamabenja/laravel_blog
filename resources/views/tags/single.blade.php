@@ -12,7 +12,7 @@
                 <div class="col-lg-12">
                     <div class="hero-nav-area">
                         <h1 class="text-white">{{$tag->name }} Posts</h1>
-                        <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span><a>Category</a> <span class="lnr lnr-arrow-right"></span><a>{{$tag->name}}</a></p>
+                        <p class="text-white link-nav"><a href="/">Home </a>  <span class="lnr lnr-arrow-right"></span><a>Category</a> <span class="lnr lnr-arrow-right"></span><a>{{$tag->name}}</a></p>
                     </div>
                 </div>
                 @foreach ($mainPosts as $mainPost)
@@ -52,7 +52,7 @@
                                     <h4>{{$post->title}}</h4>
                                 </a>
                                 <ul class="meta">
-                                    <li><a href="#"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
+                                    <li><a href="{{ url('bloggers/'.$post->user->name) }}"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
                                     <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date( 'M j Y',strtotime($post->created_at))}}</a></li>
                                     <li><a href="#"><span class="lnr lnr-bubble"></span>{{$post->comments()->count()}}Comments</a></li>
                                 </ul>

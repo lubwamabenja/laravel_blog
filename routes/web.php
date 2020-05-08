@@ -30,6 +30,9 @@ Route::get('tags/u/{tag_name}',['as' => 'tags.single','uses' => 'TagController@g
 
 
 
+
+
+
 Route::group(['middleware' => ['auth','verified']], function () {
 
     Route::get('mark-as-read', 'PostController@markNotification')->name('markNotification');
@@ -47,7 +50,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
      Route::resource('tags', 'TagController',['except'=> ['create']]);
 
      //User Controller
-     Route::resource('users', 'UserController');
+     Route::resource('users', 'UserController',['except'=> ['getUser']]);
 
 
 
@@ -63,6 +66,8 @@ Route::group(['middleware' => ['web']], function () {
      ->where('slug','[\w\d\-\_]+');
      Route::get('blogs',['uses'=>'BlogController@getIndex','as'=>'blogs.index']);
      Route::get('blogs/images',['uses'=>'BlogController@getImages','as'=>'blogs.images']);
+
+     Route::get('bloggers/{user_name}',['as' => 'users.single','uses' => 'UserController@getUser']);
 
      //contact routes
 

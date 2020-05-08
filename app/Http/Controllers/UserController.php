@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Post;
+use App\Tag;
 use App\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -30,6 +33,20 @@ class UserController extends Controller
         $users = User::all();
         $notifications = auth()->user()->unreadNotifications;
         return view('users.index')->withUsers($users)->withNotifications($notifications);
+    }
+
+    public function getUser($user){
+        $tags = Tag::all();
+        $categories = Category::all();
+        $latestPosts = Post::orderBy('created_at','desc')->limit(3)->get();
+        $user = User::where('name','=',$user)->first();
+        $posts = $user->posts()->paginate(8);
+        $popularPosts = Post::orderBy('views','desc')->limit(5)->get();
+        $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
+        $notifications = auth()->user()->unreadNotifications;
+        return view('users.single')->withUser($user)->withTags($tags)->withCategories($categories)->
+        withLatestPosts($latestPosts)->withPosts($posts)
+        ->withPopularPosts($popularPosts)->withMainPosts($mainPosts)->withNotifications($notifications);;
     }
 
     /**

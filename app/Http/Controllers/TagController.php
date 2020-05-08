@@ -43,7 +43,7 @@ class TagController extends Controller
         $notifications = auth()->user()->unreadNotifications;
         return view('tags.single')->withtag($tag)->withTags($tags)->withCategories($categories)->
         withLatestPosts($latestPosts)->withPosts($posts)
-        ->withPopularPosts($popularPosts)->withMainPosts($mainPosts)->withNotifications($notifications);;
+        ->withPopularPosts($popularPosts)->withMainPosts($mainPosts)->withNotifications($notifications);
     }
 
     /**

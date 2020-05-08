@@ -23,7 +23,7 @@
                         <h3>{{$mainPost->title}}.</h3>
                     </a>
                     <ul class="meta">
-                        <li><a href="#"><span class="lnr lnr-user"></span>{{$mainPost->user->name}}</a></li>
+                        <li><a href="{{ url('bloggers/'.$mainPost->user->name) }}"><span class="lnr lnr-user"></span>{{$mainPost->user->name}}</a></li>
                         <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date('M j,Y',strtotime($mainPost->created_at))}}</a></li>
                         <li><a href="#"><span class="lnr lnr-bubble"></span>{{$mainPost->comments()->count()}}</a></li>
                     </ul>
@@ -45,7 +45,7 @@
                             <h4>{{$latestPost->title}}.</h4>
                         </a>
                         <ul class="meta">
-                            <li><a href="#"><span class="lnr lnr-user"></span>{{$latestPost->user->name}}</a></li>
+                            <li><a href="{{ url('bloggers/'.$latestPost->user->name) }}"><span class="lnr lnr-user"><img src="{{ asset('images/'.$latestPost->user->image) }}" alt=""></span>{{$latestPost->user->name}}</a></li>
                             <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date('M j,Y',strtotime($latestPost->created_at))}}</a></li>
                             <li><a href="#"><span class="lnr lnr-bubble"></span>{{$latestPost->comments()->count()}}</a></li>
                         </ul>
@@ -92,7 +92,7 @@
                                 <h4>{{$post->title}}</h4>
                             </a>
                             <ul class="meta">
-                                <li><a href="#"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
+                                <li><a href="{{ url('bloggers/'.$post->user->name) }}"><span class="lnr lnr-user"></span>{{$post->user->name}}</a></li>
                                 <li><a href="#"><span class="lnr lnr-calendar-full"></span>{{ date('M j,Y',strtotime($post->created_at))}}</a></li>
                             <li><a href="#"><span class="lnr lnr-bubble"></span>{{$post->comments()->count()}}</a></li>
                             </ul>
