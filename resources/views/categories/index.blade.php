@@ -1,5 +1,5 @@
 @extends('admin')
-
+@section('task','Categories')
 @section('title','| All Categories')
 @section('content')
 @if (session('status'))

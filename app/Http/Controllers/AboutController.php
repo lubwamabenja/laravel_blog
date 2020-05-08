@@ -36,9 +36,8 @@ class AboutController extends Controller
         $popularPosts = Post::orderBy('views','desc')->limit(3)->get();
         $abouts = About::all();
         $mainPosts = Post::orderBy('id','desc')->limit(1)->get();
-        $notifications = auth()->user()->unreadNotifications;
         return view('pages.about')->withPosts($posts)->withTags($tags)->withCategories($categories)->withlatestPosts($latestPosts)
-        ->withPopularPosts($popularPosts)->withAbouts($abouts)->withmainPosts($mainPosts)->withNotifications($notifications);
+        ->withPopularPosts($popularPosts)->withAbouts($abouts)->withmainPosts($mainPosts);
     }
 
 

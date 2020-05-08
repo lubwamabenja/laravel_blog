@@ -1,5 +1,5 @@
 @extends('admin')
-
+@section('task','Delete Post')
 @section('content')
 <div id="DangerModalftblack" class="modal modal-adminpro-general FullColor-popup-DangerModal PrimaryModal-bgcolor fade" role="dialog">
     <div class="modal-dialog">

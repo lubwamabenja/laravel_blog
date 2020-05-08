@@ -1,5 +1,7 @@
 @extends('admin')
 
+@section('task','Create Posts')
+
 @section('title','|Create Posts')
 
 @section('stylesheets')

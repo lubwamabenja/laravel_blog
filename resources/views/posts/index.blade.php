@@ -1,6 +1,7 @@
 @extends('admin')
 
 @section('title','|All Posts ')
+@section('task','All Posts')
 @section('content')
 @if (session('status'))
 <div class="alert alert-success" role="alert">
@@ -52,8 +53,8 @@
                                         <td>{{ date('M j,Y',strtotime($post->created_at))}}</td>
                                         <td>
                                             {!! Form::open(['route' => ['posts.destroy',$post->id],'method'=>'DELETE']) !!}
-                                            <a style="color:#ffffff;padding:8px 20px 8px 20px; margin-left:20px;" href="{{ route('posts.show',$post->id)}}" class="btn btn-success">View</a>
-                                            <a style="color:#ffffff;padding:8px 20px 8px 20px; margin-left:10px;" href="{{ route('posts.edit',$post->id)}}" class="btn  btn-primary">Edit</a>
+                                            <a style="color:#ffffff;" href="{{ route('posts.show',$post->id)}}" class="btn btn-success">View</a>
+                                            <a style="color:#ffffff;" href="{{ route('posts.edit',$post->id)}}" class="btn  btn-primary">Edit</a>
                                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                             {!! Form::close() !!}
 

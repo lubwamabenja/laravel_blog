@@ -1,6 +1,7 @@
 @extends('admin')
 
 @section('title','|View post')
+@section('task','View Post')
 @section('content')
 
 

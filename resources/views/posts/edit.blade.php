@@ -1,4 +1,5 @@
 @extends('admin')
+@section('task','Edit Posts')
 
 
 @section('title','| Edit Post')

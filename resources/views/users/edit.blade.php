@@ -1,6 +1,7 @@
 @extends('admin')
 
 @section('title','|User Profile')
+@section('task','Edit Profile')
 
 
 
@@ -54,10 +55,10 @@
 
 
                                                                         <div class="contact-client-address">
-                                                                            <p class="address-client-ct"><strong>Name:</strong> <span style="color: #1760be;">{{$user->name}}</span></p>
-                                                                            <p class="address-client-ct"><strong>Email:</strong> <span style="color: #1760be;">{{$user->email}}</span></p>
-                                                                            <p class="address-client-ct"><strong>Posts:</strong> <span style="color: #1760be;">{{$user->posts()->count()}}</span></p>
-                                                                            <p class="address-client-ct"><strong>Views:</strong><span style="color: #1760be;">  {{$user->posts()->sum('views')}}</span></p>
+                                                                            <p class="address-client-ct"><strong>Name:</strong> <span  style="font-weight: 100">{{$user->name}}</span></p>
+                                                                            <p class="address-client-ct"><strong>Email:</strong> <span  style="font-weight: 100">{{$user->email}}</span></p>
+                                                                            <p class="address-client-ct"><strong>Posts:</strong> <span  style="font-weight: 100">{{$user->posts()->count()}}</span></p>
+                                                                            <p class="address-client-ct"><strong>Views:</strong><span  style="font-weight: 100">  {{$user->posts()->sum('views')}}</span></p>
                                                                             <p><strong>Role:</strong> Admin</p>
                                                                         </div>
                                                                     </div>

@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth','verified']], function () {
     //Posts Routes
 
     Route::resource('posts', 'PostController');
+
+    //Image Routes
+    Route::resource('portfolios', 'PortfolioController');
      //Categories Routes
      Route::resource('categories', 'CategoryController',['except'=> ['create','getCategory']]);
 

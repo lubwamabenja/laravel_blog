@@ -1,7 +1,7 @@
 @extends('admin')
 
 @section('title','|All Users')
-
+@section('task','All Users ')
 
 @section('content')
 
@@ -27,11 +27,11 @@
                                 <h2><a href="{{route('users.edit',$user->id)}}">{{$user->name}}</a></h2>
                             </div>
                             <div class="contact-client-address">
-                                <p class="address-client-ct"><strong>Name:</strong> <span style="color: #1760be;">{{$user->name}}</span></p>
-                                <p class="address-client-ct"><strong>Email:</strong> <span style="color: #1760be;">{{$user->email}}</span></p>
-                                <p class="address-client-ct"><strong>Posts:</strong> <span style="color: #1760be;">{{$user->posts()->count()}}</span></p>
-                                <p class="address-client-ct"><strong>Views:</strong><span style="color: #1760be;">  {{$user->posts()->sum('views')}}</span></p>
-                                <p><strong>Role:</strong> Admin</p>
+                                <p class="address-client-ct"  style="font-weight: 100" ><strong>Name:</strong> <span>{{$user->name}}</span></p>
+                                <p class="address-client-ct"  style="font-weight: 100" ><strong>Email:</strong> <span>{{$user->email}}</span></p>
+                                <p class="address-client-ct"  style="font-weight: 100" ><strong>Posts:</strong> <span>{{$user->posts()->count()}}</span></p>
+                                <p class="address-client-ct" style="font-weight: 100"><strong>Views:</strong><span>  {{$user->posts()->sum('views')}}</span></p>
+                                <p><strong>Role:</strong><span  style="font-weight: 100"> Admin</span></p>
                             </div>
                         </div>
                     </div>
